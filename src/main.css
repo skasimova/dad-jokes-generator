@@ -31,6 +31,10 @@ body {
     margin-top: 15px;
 }
 
+.button-container .btn {
+    margin: 20px;
+}
+
 .joke-container {
     text-align: center;
     margin-top: 3vh;

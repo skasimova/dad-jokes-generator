@@ -35,7 +35,14 @@ function createButton() {
     refreshButton.setAttribute('id', 'generate-button');
     refreshButton.innerText = 'Crack another one!';
 
+    const searchButton = document.createElement('button');
+    searchButton.setAttribute('class', 'btn btn-light');
+    searchButton.setAttribute('id', 'search-button');
+    searchButton.innerText = 'Search jokes';
+
     buttonContainer.appendChild(refreshButton);
+    buttonContainer.appendChild(searchButton);
+
     container.appendChild(buttonContainer);
 
     refreshButton.addEventListener('click', event => {
@@ -43,9 +50,16 @@ function createButton() {
 
         document.getElementById('joke').remove();
         refreshButton.remove();
+        searchButton.remove();
 
         getRandomJoke()
             .then(data => fillInJokes(data));
+    })
+
+    searchButton.addEventListener('click', event => {
+        event.preventDefault();
+
+        window.open('jokes-list.html')
     })
 }
 
