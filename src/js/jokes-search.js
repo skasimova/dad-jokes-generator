@@ -9,22 +9,24 @@ async function getJokes() {
 }
 
 getJokes()
-    .then(data => console.log(data.results));
+    .then(data => createJokes(data));
 
-function createJokes(jokes) {
+function createJokes(data) {
     const jokesList = document.getElementById('jokes-list');
     jokesList.innerText = '';
 
-    jokes.forEach(joke => createJoke(joke));
+    let allJokes = data.results;
+
+    allJokes.forEach(joke => createJoke(joke));
 }
 
-function createJoke(joke) {
+
+function createJoke(data) {
     const jokesList = document.getElementById('jokes-list');
-
     const oneJoke = document.createElement('li');
+    oneJoke.setAttribute('id', 'one-joke');
 
-    //todo посмотри как в том проекте добавляешь языки, и так же добавь сюда результаты поиска
-    oneJoke.innerText = joke.results;
+    oneJoke.innerText = data.joke;
 
     jokesList.appendChild(oneJoke);
 }
