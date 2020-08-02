@@ -14,14 +14,17 @@ function createJokes(data) {
 
     let allJokes = data.results;
 
-    allJokes.forEach(joke => createJoke(joke));
+    if(allJokes.length === 0) {
+        jokesList.innerText = 'No jokes found. Try another keyword.';
+    } else {
+        allJokes.forEach(joke => createJoke(joke));
+    }
 }
 
 function createJoke(data) {
     const jokesList = document.getElementById('jokes-list');
-    const oneJoke = document.createElement('li');
+    const oneJoke = document.createElement('div');
     oneJoke.setAttribute('id', 'one-joke');
-    oneJoke.setAttribute('class', 'list-group-item');
 
     oneJoke.innerText = data.joke;
 
@@ -37,5 +40,7 @@ searchButton.addEventListener('click', event => {
 
     searchJokes(inputForm.value)
         .then(data => createJokes(data));
+
+    inputForm.value = '';
 });
 
